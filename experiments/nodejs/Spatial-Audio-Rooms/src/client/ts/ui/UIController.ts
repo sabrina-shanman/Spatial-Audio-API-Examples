@@ -288,7 +288,7 @@ export class UIController {
     generateUserGainForThisConnectionUI(userData: UserData) {
         let hifiCommunicator = connectionController.hifiCommunicator;
 
-        if (!hifiCommunicator || userData.visitIDHash === userDataController.myAvatar.myUserData.visitIDHash || typeof (userData.userGainForThisConnection) !== "number") {
+        if (!hifiCommunicator || userData.visitIDHash === userDataController.myAvatar.myUserData.visitIDHash) {
             return;
         }
 
@@ -310,7 +310,8 @@ export class UIController {
         avatarContextMenu__userGainForThisConnectionSlider.classList.add("avatarContextMenu__userGainForThisConnectionSlider");
 
         // The `change` event fires when the user lets go of the slider.
-        avatarContextMenu__userGainForThisConnectionSlider.addEventListener("change", async (e) => {
+        //avatarContextMenu__userGainForThisConnectionSlider.addEventListener("change", async (e) => {
+        avatarContextMenu__userGainForThisConnectionSlider.addEventListener("input", async (e) => {
             let userGainForThisConnectionSliderValue = parseFloat((<HTMLInputElement>e.target).value);
             try {
                 console.log(`Setting user gain for this connection for Visit ID Hash \`${userData.visitIDHash}\ to \`${userGainForThisConnectionSliderValue}\`...`);
@@ -465,8 +466,9 @@ export class UIController {
         let avatarContextMenu__userGainForThisConnectionSlider = <HTMLInputElement>this.avatarContextMenu.querySelector(".avatarContextMenu__userGainForThisConnectionSlider");
         let avatarContextMenu__userGainForThisConnectionHeader = <HTMLHeadingElement>this.avatarContextMenu.querySelector(".avatarContextMenu__userGainForThisConnectionHeader");
         if (avatarContextMenu__userGainForThisConnectionSlider) {
-            avatarContextMenu__userGainForThisConnectionSlider.value = userData.userGainForThisConnection.toString();
-            avatarContextMenu__userGainForThisConnectionHeader.innerHTML = `Volume (Personal): ${Math.round(userData.userGainForThisConnection * 100)}%`;
+            // TODO: Restore
+            //avatarContextMenu__userGainForThisConnectionSlider.value = userData.userGainForThisConnection.toString();
+            //avatarContextMenu__userGainForThisConnectionHeader.innerHTML = `Volume (Personal): ${Math.round(userData.userGainForThisConnection * 100)}%`;
         }
 
         let avatarContextMenu__volumeThresholdSlider = <HTMLInputElement>this.avatarContextMenu.querySelector(".avatarContextMenu__volumeThresholdSlider");
