@@ -62,14 +62,14 @@ class RandomBoundedMovement extends Motor {
         this.direction = direction;
         this.rotateForward(direction);
     }
-    boundedLinear() {
+    async boundedLinear() {
         let interval = this.updateInterval(),
             distanceAtSpeed = this.metersPerMs * interval,
             start = this.position,
             next = add(start,
                        multiply(this.direction, distanceAtSpeed));
         if (this.isWithinBox(next)) {
-            this.position = this.bot.updatePosition(next);
+            this.position = await this.bot.updatePosition(next);
         } else {
             this.setupNextMotion(next);
         }

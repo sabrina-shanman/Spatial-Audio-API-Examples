@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/highfidelity/Spatial-Audio-API-Examples#readme",
   "dependencies": {
+    "async-mutex": "^0.3.1",
     "audio-decode": "^1.4.0",
     "audio-format": "^2.3.2",
     "gyp": "^0.5.0",

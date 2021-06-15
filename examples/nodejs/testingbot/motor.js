@@ -13,6 +13,9 @@ class Motor {
     start()  { // Calls step every updaterPeriodMs until someone calls stop().
         this.setupNextMotion(this.position);
         this.lastStep = Date.now();
+        if (this.interval) {
+            clearInterval(this.interval);
+        }
         return this.interval = setInterval(() => this.step(), this.updatePeriodMs); // return truthy
     }
     stop() {
