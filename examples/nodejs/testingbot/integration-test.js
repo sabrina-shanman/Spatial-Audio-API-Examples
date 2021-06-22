@@ -13,11 +13,7 @@ const defaults = {
     name: 'Bot #',
     serverShouldSendUserData: true,
     runtimeSeconds: 0,
-    shouldReconnect: false,
-    reconnectIntervalSeconds: 1,
-    shouldDisconnect: false,
-    disconnectIntervalSeconds: 1,
-    disconnectChance: 0,
+    disconnectChance: 1,
     measure: '',
     jwt: '',
     app_id: '', space_id: '', stackName: '',  // Edit in your own values here.
@@ -95,24 +91,16 @@ const argv = yargs
           describe: describe('How long should each bot run AFTER at it has completely started, or falsy to keep going indefinitely', 'runtimeSeconds'),
           type: 'array'
       })
-      .options('shouldReconnect', {
-          describe: describe('Whether the bot should attempt to reconnect after disconnecting', 'shouldReconnect'),
-          type: 'array'
-      })
       .options('reconnectIntervalSeconds', {
-          describe: describe('If shouldReconnect is true for the bot, how often the bot should attempt to reconnect', 'reconnectIntervalSeconds'),
-          type: 'array'
-      })
-      .options('shouldDisconnect', {
-          describe: describe('Whether the bot should sometimes disconnect', 'shouldDisconnect'),
+          describe: describe('How often the bot should attempt to reconnect', 'reconnectIntervalSeconds'),
           type: 'array'
       })
       .options('disconnectIntervalSeconds', {
-          describe: describe('If shouldDisconnect is true for the bot, the interval at which the bot should sometimes disconnect', 'disconnectIntervalSeconds'),
+          describe: describe('How often the bot should attempt to disconnect', 'disconnectIntervalSeconds'),
           type: 'array'
       })
       .options('disconnectChance', {
-          describe: describe('If shouldDisconnnect is true for the bot, the likelihood between 0 and 1 that the bot will disconnect each disconnect interval', 'disconnectChance'),
+          describe: describe('If disconnectIntervalSeconds is defined for the bot, the likelihood between 0 and 1 that the bot will disconnect each disconnect interval', 'disconnectChance'),
           type: 'array'
       })
       .options('measure', {

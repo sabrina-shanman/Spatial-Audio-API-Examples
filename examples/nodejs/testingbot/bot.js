@@ -107,7 +107,7 @@ class Bot {
     startConnectIntervals() {
         this.reconnectInterval && clearInterval(this.reconnectInterval);
         this.disconnectInterval && clearInterval(this.disconnectInterval);
-        if (this.shouldReconnect && typeof(this.reconnectIntervalSeconds) == "number" && this.reconnectIntervalSeconds >= 0) {
+        if (typeof(this.reconnectIntervalSeconds) == "number" && this.reconnectIntervalSeconds >= 0) {
             this.reconnectInterval = setInterval(
                 (async () => {
                     if (!(await this.isConnected())) {
@@ -120,7 +120,7 @@ class Bot {
                 }),
             Math.max(10, this.reconnectIntervalSeconds * 1000));
         }
-        if (this.shouldDisconnect && typeof(this.disconnectIntervalSeconds) == "number" && this.disconnectIntervalSeconds >= 0 && typeof(this.disconnectChance) == "number") {
+        if (typeof(this.disconnectIntervalSeconds) == "number" && this.disconnectIntervalSeconds >= 0 && typeof(this.disconnectChance) == "number") {
             this.disconnectInterval = setInterval(
                 async () => {
                     if ((await this.isConnected())) {
