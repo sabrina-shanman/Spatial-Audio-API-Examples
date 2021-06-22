@@ -25,6 +25,7 @@ class Bot {
     constructor({x = 0, y = 0, z = 0, rollDegrees = 0, pitchDegrees = 0, yawDegrees = 0, volume = 1,
                  serverShouldSendUserData = true,
                  transmitRateLimitTimeoutMS = HiFiConstants.DEFAULT_TRANSMIT_RATE_LIMIT_TIMEOUT_MS, motor, ...options} = {}) {
+        // TODO: Remove this mutex when HiFiCommunicator behavior is more well-defined under concurrent access
         this.communicatorMutex = new Mutex();
         // yargs parses an arg of 1.5 as number, but 0.5 as a string, so deal with it by parsing again here.
         this.position = new Point3D({x: parseFloat(x), y: parseFloat(y), z: parseFloat(z)});
